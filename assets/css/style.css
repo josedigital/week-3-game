@@ -1,0 +1,156 @@
+/* -------------------------------
+    Home Styles
+------------------------------- */
+
+.home {
+  text-align: center;
+}
+
+
+header {
+  height: 200px;
+  line-height: 5;
+}
+
+
+
+.home a {
+  color: #fff;
+}
+
+.button {
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-block;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #00b0e9;
+  transition-delay: 0;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in;
+  transition-property: background, border-color;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  appearance: none;
+}
+
+.button:hover {
+  background-color: #00d0e9;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------
+    Psychic Game Styles
+------------------------------- */
+
+.wrapper-small {
+  position: relative;
+  z-index: 10;
+}
+.psychic-game {
+  color: white;
+  background: linear-gradient(152deg, #540351, #a56cd4, #6ca1d4, #60cae3);
+  background-size: 800% 800%;
+
+
+  -webkit-animation: bggradient 5s ease-in infinite;
+  -moz-animation: bggradient 5s ease-in infinite;
+  animation: bggradient 5s ease-in infinite;
+
+
+}
+
+  @-webkit-keyframes bggradient {
+      0%{background-position:39% 0%}
+      50%{background-position:62% 100%}
+      100%{background-position:39% 0%}
+  }
+  @-moz-keyframes bggradient {
+      0%{background-position:39% 0%}
+      50%{background-position:62% 100%}
+      100%{background-position:39% 0%}
+  }
+  @keyframes bggradient { 
+      0%{background-position:39% 0%}
+      50%{background-position:62% 100%}
+      100%{background-position:39% 0%}
+  }  
+
+
+.bg2 {
+  background: linear-gradient(236deg, #460d7d, #625c96, #3e9bd0, #c93ed0);
+  background-size: 800% 800%;
+
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  opacity: 0.35;
+  display:block;
+
+
+  -webkit-animation: bggradient2 19s ease infinite;
+  -moz-animation: bggradient2 19s ease infinite;
+  animation: bggradient2 19s ease infinite;
+}
+
+@-webkit-keyframes bggradient2 {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes bggradient2 {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes bggradient2 { 
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+
+
+
+/* -------------------------------
+    Hangman Game Styles
+------------------------------- */
+
+.hangman-game {
+  background: linear-gradient(
+      rgba(255, 0, 0, 0.45), 
+      rgba(255, 0, 200, 0.45)
+    ),
+    url('../images/hangman-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 200%, cover;
+
+  color: #fff;
+}
+
+.hangman-game .wrapper-small {
+  margin-top: 4em;
+}
