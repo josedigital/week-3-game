@@ -154,3 +154,7 @@ header {
 .hangman-game .wrapper-small {
   margin-top: 4em;
 }
+
+.spaces {
+  letter-spacing: 20px;
+}
