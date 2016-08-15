@@ -1,15 +1,3 @@
-// var arr = [];
-// arr[0] = "Jani";
-// arr[1] = "Hege";
-// arr[2] = "Stale";
-// arr[3] = "Kai Jim";
-// arr[4] = "Borge";
-
-// console.log(arr.join());
-// arr.splice(2, 1, "Lene");
-// console.log(arr.join());
-
-
 // declare variables
 var hangman,
     guessCount,
@@ -25,12 +13,11 @@ var hangman,
     wordToGuess;
 
 
-
 hangman = {
-
 
   // word bank
   wordbank: ['test', 'one', 'two'],
+
 
   // initiate game
   init: function() {
@@ -48,10 +35,10 @@ hangman = {
     wordArray.forEach(function() {
       spaces.push('_');
     });
-    // convert to string
-    spaces = spaces.join('');
+    
     // write to document
-    document.querySelector('.spaces').innerHTML = spaces;
+    document.querySelector('.spaces').innerHTML = spaces.join('');
+    
 
 
 
@@ -60,15 +47,8 @@ hangman = {
 
 
 
-    // set rightGuesses to 0
-    rightGuesses = [];
-
-
-
     // set wrongGuess to 0
     wrongGuesses = [];
-
-    
 
 
     document.onkeyup = function(event) {
@@ -76,104 +56,53 @@ hangman = {
       // store the user's guess
       userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
-
-
-      // check if the userGuess is a letter in the wordToGuess
       if(wordArray.indexOf(userGuess) !== -1) {
-
-        // check if userGuess has already been logged
-        if(rightGuesses.indexOf(userGuess) !== -1) {
-          console.log('you already guessed that');
-        } else {
-          // userGuess is found in word, now count how many times and log it
-          console.log(hangman.occur(wordToGuess, userGuess));
-
-          // check if all letters have been guessed
-          
-          
-        }
-
-
-
+        hangman.writeLetters(wordArray, userGuess);
       } else { // if it is not in word:
-        
-          // check if userGuess has already been logged
-          if(wrongGuesses.indexOf(userGuess) !== -1) {
-            // do nothing
-            console.log('you already guessed that');
-          } else {
-
-            // wrong guess means take away 1 from total guesses
-            guessCount--;
-            console.log('guesses left: ' + guessCount);
-
-            // check if guessCount is at 0
-            if(guessCount === 0) {
-              hangman.lose();
-            }
-
-            console.log(userGuess + ' is not found in ' + wordToGuess);
-            // add userGuess to wrongGuesses
-            wrongGuesses.push(userGuess);
-            console.log(wrongGuesses);
-          }
-      
-
+        guessCount--;
+        console.log('incorrect guess ' + guessCount);
       }
 
-      hangman.record();
+      
+      hangman.wins(spaces);
+      
 
+      
     }
 
-
-
   },
 
-  occur: function(arr, word) {
-    var count = 0;
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[i] === word) {
-            rightGuesses.push(userGuess);
-        }
+
+
+
+  writeLetters: function(word, letter) {
+      // check if userGuess is in wordArray
+      for(var i = 0; i < word.length; i++) {
+        if (letter === word[i]) {
+          
+          // if letter is in word, add it to spaces array at appropriate index
+          spaces.splice(i, 1, letter);
+          
+          
+          // write to document
+          document.querySelector('.spaces').innerHTML = spaces.join('');
+
+        };
+      }
+  },
+
+
+
+  wins: function(activeArray) {
+    if(wordArray.toString() === activeArray.toString()) {
+      return true;
     }
-    return rightGuesses;
-  },
-
-  reset: function() {
-    document.querySelector('#game').innerHTML = '<p>Type a letter to start a new game';
-    this.init();
-  },
-
-  win: function() {
-  },
-
-  lose: function() {
-    console.log('sorry, you lost.');
-    hangman.reset();
-  },
-
-  record: function() {
-
-    html = '<p>Wins: ' + wins + '</p>' + 
-    '<p>Losses: '+ losses + '</p>' +
-    '<p>Guesses left: ' + guessesLeft + '</p>' +
-    '<p>Your Guesses so far: ' + wrongGuesses + '</p>';
-
-    document.querySelector('#game').innerHTML = html;
-
-
-  
+    
   }
+
 
 
 }
 
 
-// numGuesses = wordbank[0].length;
-
 hangman.init();
-
-
-
-
-
