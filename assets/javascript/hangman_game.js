@@ -1,15 +1,13 @@
 // declare variables
 var hangman,
     guessCount,
-    guessesLeft,
     html,
     losses = 0,
+    prevWord,
     spaces = [],
     userGuess,
     userGuesses = [],
-    rightGuesses,
     wins = 0,
-    wrongGuesses = [],
     wordArray,
     wordToGuess;
 
@@ -17,18 +15,22 @@ var hangman,
 hangman = {
 
   // word bank
-  wordbank: ['test', 'one', 'two'],
+  // wordbank: ['test', 'one', 'two'],
+  wordbank: ['jazz','strengths','gypsy','rhythmic','cognac','jukebox','sprightly','asthma','orphan','months','czar','depths','geniuses','withhold','powwow','bookkeeper','kamikaze','fettuccine','quagmire','mannequin','caribou','skiing','queueing','symphony','crypt','wintry','twelfth','sequoia','gauntlet','zoology','unscrupulous','tympani','furlough','coffee','papaya','catchphrase','paprika','brouhaha','impromptu','cyclists','plateaued','cushion','alfalfa','jambalaya','ukulele','anchovy','messiah','buoyed','rendezvous'],
+  congrats: ['Nice one!', 'Good job!', 'Way to go!'],
 
   // initiate game
   init: function() {
 
     // pick a random word from the wordbank array
     wordToGuess = this.wordbank[Math.floor(Math.random() * this.wordbank.length)];
+    console.log(wordToGuess);
 
+    // congrats phrase
+    congratulation = this.congrats[Math.floor(Math.random() * this.congrats.length)];
     
     // convert word to array
     wordArray = wordToGuess.split('');
-
 
 
     // create the spaces to represent word
@@ -64,7 +66,8 @@ hangman = {
         hangman.writeLetters(wordArray, userGuess);
       } else { // if it is not in word:
         hangman.notInWord();
-
+        // hide the revealed messeag
+        document.querySelector('.reveal').className = 'reveal';
       }
 
       // check for a win
@@ -124,6 +127,8 @@ hangman = {
     if(wordArray.toString() === spaces.toString()) {
       wins++;
       document.querySelector('.win').play();
+      // hide the previous word if user wins
+      prevWord = congratulation;
       hangman.reset();
     }
     
@@ -134,6 +139,8 @@ hangman = {
     if(guessCount === 0) {
       losses++;
       document.querySelector('.lose').play();
+      // display the word if user loses
+      prevWord = '<span>The previous word was</span> ' + wordToGuess;
       hangman.reset();
     }
   },
@@ -147,6 +154,8 @@ hangman = {
     userGuesses = [];
     // restart game
     hangman.init();
+    document.querySelector('.reveal').innerHTML = prevWord;
+    document.querySelector('.reveal').className = 'reveal visible';
   },
 
 

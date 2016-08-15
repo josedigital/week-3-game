@@ -183,6 +183,17 @@ h2 {
   width: 0;
 }
 
+.reveal {
+  opacity: 0;
+  transition: opacity .3s;
+}
+.reveal.visible {
+  opacity: 1;
+}
+.reveal span {
+  color: #dedade;
+}
+
 .w-12 {
   width: calc(8.333333333% * 1);
 }
