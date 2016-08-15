@@ -176,14 +176,9 @@ h2 {
 .error.visible {
   opacity: 1;
 }
-.indicator {
-  background-color: #23ade4;
-  height: 5px;
-  transition: all .3s ease-in-out;
-  width: 0;
-}
 
 .reveal {
+  color: #23ade4;
   opacity: 0;
   transition: opacity .3s;
 }
@@ -192,6 +187,15 @@ h2 {
 }
 .reveal span {
   color: #dedade;
+}
+
+
+
+.indicator {
+  background-color: #23ade4;
+  height: 5px;
+  transition: all .3s ease-in-out;
+  width: 0;
 }
 
 .w-12 {
