@@ -3,12 +3,13 @@ var hangman,
     guessCount,
     guessesLeft,
     html,
-    losses,
+    losses = 0,
     spaces = [],
     userGuess,
+    userGuesses = [],
     rightGuesses,
-    wins,
-    wrongGuesses,
+    wins = 0,
+    wrongGuesses = [],
     wordArray,
     wordToGuess;
 
@@ -17,7 +18,6 @@ hangman = {
 
   // word bank
   wordbank: ['test', 'one', 'two'],
-
 
   // initiate game
   init: function() {
@@ -47,8 +47,6 @@ hangman = {
 
 
 
-    // set wrongGuess to 0
-    wrongGuesses = [];
 
 
     document.onkeyup = function(event) {
@@ -60,13 +58,20 @@ hangman = {
         hangman.writeLetters(wordArray, userGuess);
       } else { // if it is not in word:
         guessCount--;
-        console.log('incorrect guess ' + guessCount);
+        userGuesses.push(userGuess);
+        console.log('incorrect guess ' + userGuesses);
+        console.log('----------');
+        console.log('guesses left: ' + guessCount)
       }
 
+      // check for a win
+      hangman.win(spaces);
       
-      hangman.wins(spaces);
-      
+      // check for a lose
+      hangman.lose();
 
+      // write to DOM
+      hangman.record();
       
     }
 
@@ -93,12 +98,47 @@ hangman = {
 
 
 
-  wins: function(activeArray) {
+  win: function(activeArray) {
     if(wordArray.toString() === activeArray.toString()) {
-      return true;
+      wins++;
+      console.log('you win');
+      hangman.reset();
     }
     
+  },
+
+
+  lose: function() {
+    if(guessCount === 0) {
+      losses++;
+      console.log('you lose');
+      hangman.reset();
+    }
+  },
+
+
+
+  reset: function() {
+    // reset spaces
+    spaces = [];
+    // set wrongGuess to 0
+    userGuesses = [];
+    // restart game
+    hangman.init();
+  },
+
+
+  record: function() {
+    html = '<p>Wins: ' + wins + '</p>' +
+           '<p>Losses: ' + losses + '</p>' +
+           '<p>Guesses left: ' + guessCount + '</p>' +
+           '<p>Your Guesses so far: ' + userGuesses + '</p>';
+    document.querySelector('#game').innerHTML = html;
   }
+
+
+
+
 
 
 
