@@ -43,7 +43,11 @@ hangman = {
 
 
     // set guessCount to length of wordArray
-    guessCount = wordArray.length;
+    // guessCount = wordArray.length;
+    guessCount = 12;
+
+    // set indicator to 0
+    document.querySelector('.indicator').className = 'indicator';
 
 
 
@@ -54,18 +58,17 @@ hangman = {
       // store the user's guess
       userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
+      
+
       if(wordArray.indexOf(userGuess) !== -1) {
         hangman.writeLetters(wordArray, userGuess);
       } else { // if it is not in word:
-        guessCount--;
-        userGuesses.push(userGuess);
-        console.log('incorrect guess ' + userGuesses);
-        console.log('----------');
-        console.log('guesses left: ' + guessCount)
+        hangman.notInWord();
+
       }
 
       // check for a win
-      hangman.win(spaces);
+      hangman.win();
       
       // check for a lose
       hangman.lose();
@@ -93,14 +96,32 @@ hangman = {
           // write to document
           document.querySelector('.spaces').innerHTML = spaces.join('');
 
-        };
+        }
       }
+  },
+
+  notInWord: function() {
+    // grow indicator if wrong guess
+    document.querySelector('.indicator').className = 'indicator w-'+guessCount;  
+
+    if(userGuesses.indexOf(userGuess) !== -1) {
+        // document.querySelector('.error').innerHTML = 'You have already guessed that letter.'
+        document.querySelector('.error').className = 'error visible';
+        guessCount++;
+        document.querySelector('.indicator').className = 'indicator w-'+guessCount;  
+        console.log('you already guessed that');
+        guessCount--;
+      } else {
+        document.querySelector('.error').className = 'error';
+        guessCount--;
+        userGuesses.push(userGuess);
+      }    
   },
 
 
 
-  win: function(activeArray) {
-    if(wordArray.toString() === activeArray.toString()) {
+  win: function() {
+    if(wordArray.toString() === spaces.toString()) {
       wins++;
       document.querySelector('.win').play();
       hangman.reset();
@@ -133,7 +154,7 @@ hangman = {
     html = '<p>Wins: ' + wins + '</p>' +
            '<p>Losses: ' + losses + '</p>' +
            '<p>Guesses left: ' + guessCount + '</p>' +
-           '<p>Your Guesses so far: ' + userGuesses + '</p>';
+           '<p>Your Guesses so far: <span class="uppercase">' + userGuesses + '</span></p>';
     document.querySelector('#game').innerHTML = html;
   }
 

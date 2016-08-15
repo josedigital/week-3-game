@@ -8,11 +8,12 @@
 
 
 header {
-  height: 200px;
-  line-height: 5;
+  border-bottom: 1px solid;
 }
 
-
+h2 {
+  font-size: 62px;
+}
 
 .home a {
   color: #fff;
@@ -139,22 +140,90 @@ header {
 ------------------------------- */
 
 .hangman-game {
-  background: linear-gradient(
+/*  background: linear-gradient(
       rgba(255, 0, 0, 0.45), 
       rgba(255, 0, 200, 0.45)
     ),
     url('../images/hangman-bg.jpg');
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 200%, cover;
-
-  color: #fff;
+  background-size: 200%, cover;*/
+  background-color: #fff;
+  color: #333;
 }
 
 .hangman-game .wrapper-small {
-  margin-top: 4em;
 }
 
 .spaces {
   letter-spacing: 20px;
+}
+
+.heading {
+  padding: 50px 0;
+  text-align: center;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.error {
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity .3s;
+}
+.error.visible {
+  opacity: 1;
+}
+.indicator {
+  background-color: #23ade4;
+  height: 5px;
+  transition: all .3s ease-in-out;
+  width: 0;
+}
+
+.w-12 {
+  width: calc(8.333333333% * 1);
+}
+.w-11 {
+  width: calc(8.333333333% * 2);
+}
+.w-10 {
+  width: calc(8.333333333% * 3);
+}
+.w-9 {
+  background-color: #B123E4;
+  width: calc(8.333333333% * 4);
+}
+.w-8 {
+  background-color: #DA23E4;
+  width: calc(8.333333333% * 5);
+}
+.w-7 {
+  background-color: #E423CA;
+  width: calc(8.333333333% * 6);
+}
+.w-6 {
+  background-color: #E4239A;
+  width: calc(8.333333333% * 7);
+}
+.w-5 {
+  background-color: #E42384;
+  width: calc(8.333333333% * 8);
+}
+.w-4 {
+  background-color: #E42384;
+  width: calc(8.333333333% * 9);
+}
+.w-3 {
+  background-color: #F21885;
+  width: calc(8.333333333% * 10);
+}
+.w-2 {
+  background-color: #F20F0F;
+  width: calc(8.333333333% * 11);
+}
+.w-1 {
+  width: 100%;
 }
