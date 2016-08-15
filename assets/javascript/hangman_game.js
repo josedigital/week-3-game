@@ -72,6 +72,7 @@ hangman = {
 
       // write to DOM
       hangman.record();
+
       
     }
 
@@ -101,7 +102,7 @@ hangman = {
   win: function(activeArray) {
     if(wordArray.toString() === activeArray.toString()) {
       wins++;
-      console.log('you win');
+      document.querySelector('.win').play();
       hangman.reset();
     }
     
@@ -111,7 +112,7 @@ hangman = {
   lose: function() {
     if(guessCount === 0) {
       losses++;
-      console.log('you lose');
+      document.querySelector('.lose').play();
       hangman.reset();
     }
   },
