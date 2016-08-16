@@ -16,7 +16,8 @@ hangman = {
 
   // word bank
   // wordbank: ['test', 'one', 'two'],
-  wordbank: ['jazz','strengths','gypsy','rhythmic','cognac','jukebox','sprightly','asthma','orphan','months','czar','depths','geniuses','withhold','powwow','bookkeeper','kamikaze','fettuccine','quagmire','mannequin','caribou','skiing','queueing','symphony','crypt','wintry','twelfth','sequoia','gauntlet','zoology','unscrupulous','tympani','furlough','coffee','papaya','catchphrase','paprika','brouhaha','impromptu','cyclists','plateaued','cushion','alfalfa','jambalaya','ukulele','anchovy','messiah','buoyed','rendezvous'],
+  // wordbank: ['jazz','strengths','gypsy','rhythmic','cognac','jukebox','sprightly','asthma','orphan','months','czar','depths','geniuses','withhold','powwow','bookkeeper','kamikaze','fettuccine','quagmire','mannequin','caribou','skiing','queueing','symphony','crypt','wintry','twelfth','sequoia','gauntlet','zoology','unscrupulous','tympani','furlough','coffee','papaya','catchphrase','paprika','brouhaha','impromptu','cyclists','plateaued','cushion','alfalfa','jambalaya','ukulele','anchovy','messiah','buoyed','rendezvous'],
+  wordbank: ["above","cap","belong","alone","change","both","answer","clock","bridge","bad","corn","building","been","cover","buy","bell","across","care","blow","along","city","breakfast","any","clothes","brought","bank","corner","busy","before","cross","air","almost","bicycle","also","always","bread","anything","arm","brother","beautiful","because","bus","behind","believe","can’t","better","carry","caught","bought","clean","climb","bright","cloud","cook","burn","count","country","cannot","cut","dance"],
   congrats: ['Nice one!', 'Good job!', 'Way to go!'],
 
   // initiate game
@@ -129,7 +130,7 @@ hangman = {
       document.querySelector('.win').play();
       // hide the previous word if user wins
       prevWord = congratulation;
-      hangman.reset();
+      this.reset();
     }
     
   },
@@ -141,7 +142,7 @@ hangman = {
       document.querySelector('.lose').play();
       // display the word if user loses
       prevWord = '<span>The previous word was</span> ' + wordToGuess;
-      hangman.reset();
+      this.reset();
     }
   },
 
@@ -153,7 +154,7 @@ hangman = {
     // set wrongGuess to 0
     userGuesses = [];
     // restart game
-    hangman.init();
+    this.init();
     document.querySelector('.reveal').innerHTML = prevWord;
     document.querySelector('.reveal').className = 'reveal visible';
   },
@@ -163,7 +164,7 @@ hangman = {
     html = '<p>Wins: ' + wins + '</p>' +
            '<p>Losses: ' + losses + '</p>' +
            '<p>Guesses left: ' + guessCount + '</p>' +
-           '<p>Your Guesses so far: <span class="uppercase">' + userGuesses + '</span></p>';
+           '<p>Your Guesses so far: <span class="uppercase guesses">' + userGuesses + '</span></p>';
     document.querySelector('#game').innerHTML = html;
   }
 
