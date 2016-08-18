@@ -41,7 +41,7 @@ hangman = {
     
     // write to document
     document.querySelector('.spaces').innerHTML = spaces.join('');
-    
+
 
 
 
@@ -61,7 +61,7 @@ hangman = {
       // store the user's guess
       userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
-      
+
 
       if(wordArray.indexOf(userGuess) !== -1) {
         hangman.writeLetters(wordArray, userGuess);
@@ -80,7 +80,7 @@ hangman = {
       // write to DOM
       hangman.record();
 
-      
+
     }
 
   },
@@ -119,7 +119,7 @@ hangman = {
         document.querySelector('.error').className = 'error';
         guessCount--;
         userGuesses.push(userGuess);
-      }    
+      }
   },
 
 

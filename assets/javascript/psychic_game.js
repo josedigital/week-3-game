@@ -72,7 +72,7 @@ document.onkeyup = function(event) {
 
   // store the user's guess
   userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-  // add userVuess to userGuesses
+  // add userGuess to userGuesses
   userGuesses.push(userGuess);
   // record the guess to the document
   record();
