@@ -15,9 +15,8 @@ var hangman,
 hangman = {
 
   // word bank
-  // wordbank: ['test', 'one', 'two'],
-  wordbank: ['jazz','strengths','gypsy','rhythmic','cognac','jukebox','sprightly','asthma','orphan','months','czar','depths','geniuses','withhold','powwow','bookkeeper','kamikaze','fettuccine','quagmire','mannequin','caribou','skiing','queueing','symphony','crypt','wintry','twelfth','sequoia','gauntlet','zoology','unscrupulous','tympani','furlough','coffee','papaya','catchphrase','paprika','brouhaha','impromptu','cyclists','plateaued','cushion','alfalfa','jambalaya','ukulele','anchovy','messiah','buoyed','rendezvous'],
-  // wordbank: ["above","cap","belong","alone","change","both","answer","clock","bridge","bad","corn","building","been","cover","buy","bell","across","care","blow","along","city","breakfast","any","clothes","brought","bank","corner","busy","before","cross","air","almost","bicycle","also","always","bread","anything","arm","brother","beautiful","because","bus","behind","believe","can’t","better","carry","caught","bought","clean","climb","bright","cloud","cook","burn","count","country","cannot","cut","dance"],
+  wordbank: ['test', 'one', 'two'],
+
   congrats: ['Nice one!', 'Good job!', 'Way to go!'],
 
   // initiate game
@@ -49,8 +48,6 @@ hangman = {
     // guessCount = wordArray.length;
     guessCount = 12;
 
-    // set indicator to 0
-    document.querySelector('.indicator').className = 'indicator';
 
 
 
@@ -63,7 +60,7 @@ hangman = {
 
 
 
-      if(wordArray.indexOf(userGuess) !== -1) {
+      if(wordArray.indexOf(userGuess) !== -1) { // if the letter is in the word
         hangman.writeLetters(wordArray, userGuess);
       } else { // if it is not in word:
         hangman.notInWord();
@@ -103,21 +100,10 @@ hangman = {
   },
 
   notInWord: function() {
-    // hide the revealed messeag
-    document.querySelector('.reveal').className = 'reveal';
-
-    // grow indicator if wrong guess
-    document.querySelector('.indicator').className = 'indicator w-'+guessCount;  
 
     if(userGuesses.indexOf(userGuess) !== -1) {
-        // document.querySelector('.error').innerHTML = 'You have already guessed that letter.'
-        document.querySelector('.error').className = 'error visible';
-        guessCount++;
-        document.querySelector('.indicator').className = 'indicator w-'+guessCount;  
-        console.log('you already guessed that');
-        guessCount--;
+        alert('you already guessed that');
       } else {
-        document.querySelector('.error').className = 'error';
         guessCount--;
         userGuesses.push(userGuess);
       }
@@ -128,9 +114,6 @@ hangman = {
   win: function() {
     if(wordArray.toString() === spaces.toString()) {
       wins++;
-      document.querySelector('.win').play();
-      // hide the previous word if user wins
-      prevWord = congratulation;
       this.reset();
     }
     
@@ -140,9 +123,6 @@ hangman = {
   lose: function() {
     if(guessCount === 0) {
       losses++;
-      document.querySelector('.lose').play();
-      // display the word if user loses
-      prevWord = '<span>The previous word was</span> ' + wordToGuess;
       this.reset();
     }
   },
@@ -156,8 +136,6 @@ hangman = {
     userGuesses = [];
     // restart game
     this.init();
-    document.querySelector('.reveal').innerHTML = prevWord;
-    document.querySelector('.reveal').className = 'reveal visible';
   },
 
 
