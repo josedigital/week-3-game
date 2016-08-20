@@ -26,8 +26,6 @@ hangman = {
     wordToGuess = this.wordbank[Math.floor(Math.random() * this.wordbank.length)];
     console.log(wordToGuess);
 
-    // congrats phrase
-    congratulation = this.congrats[Math.floor(Math.random() * this.congrats.length)];
     
     // convert word to array
     wordArray = wordToGuess.split('');
@@ -60,7 +58,7 @@ hangman = {
 
 
 
-      if(wordArray.indexOf(userGuess) !== -1) { // if the letter is in the word
+      if(wordArray.indexexOf(userGuess) !== -1) { // if the letter is in the word
         hangman.writeLetters(wordArray, userGuess);
       } else { // if it is not in word:
         hangman.notInWord();

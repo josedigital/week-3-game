@@ -1,0 +1,14 @@
+1. word is chosen at random from word bank
+  word = wordbank[randomNum]
+  wordArray = word.split('') <-- turn word into array
+2. user gets number of guesses based on number of letters in word
+  numGuesses = word.length
+3. user types letters to start guessing
+  . check if userGuess is in wordArray. if letter is found in word:
+    1. find index of letter in wordArray (if yes, add userGuess to blankWord at index i)
+    2. push to spaces at proper index
+    . if all letters are guessed correctly, player wins
+  . else 
+    . add letter to wrongGuesses
+    . subtract 1 from numGuesses
+    . if numGuesses === 0 player loses
